@@ -4,6 +4,7 @@
     <title>CodeMirror 2: JSON mode</title>
     <link rel="stylesheet" href="../../lib/codemirror.css">
     <script src="../../lib/codemirror.js"></script>
+    <script src="json-couchbase.js"></script>
     <script src="json.js"></script>
     <link rel="stylesheet" href="../../theme/default.css">
     <style>.CodeMirror {background: #f8f8f8;}</style>
@@ -20,6 +21,8 @@
 {
     "some": "json",
     "more": "keys",
+    "_id": "bla",
+    "$expire": 330,
     "even": {
         "nested": 241
     },
@@ -27,7 +30,9 @@
 }
 </textarea></form>
     <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {});
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+           onKeyEvent: preventEditing
+      });
     </script>
 
     <p><strong>MIME types defined:</strong> <code>text/css</code>.</p>

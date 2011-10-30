@@ -4,14 +4,19 @@
     <title>CodeMirror 2: JSON mode</title>
     <link rel="stylesheet" href="../../lib/codemirror.css">
     <script src="../../lib/codemirror.js"></script>
-    <script src="json-couchbase.js"></script>
+    <script src="../../lib/runmode.js"></script>
     <script src="json.js"></script>
+    <script src="json-errors.js"></script>
+    <script src="json-couchbase.js"></script>
     <link rel="stylesheet" href="../../theme/default.css">
     <style>.CodeMirror {background: #f8f8f8;}</style>
     <link rel="stylesheet" href="../../css/docs.css">
     <style type="text/css">
 .cm-key {
     font-weight:bold;
+}
+.cm-error-duplicate {
+    text-decoration: line-through;
 }
     </style>
   </head>
@@ -31,7 +36,8 @@
 </textarea></form>
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-           onKeyEvent: preventEditing
+          //onKeyEvent: preventEditing,
+          onHighlightComplete: parseJsonErrors
       });
     </script>
 

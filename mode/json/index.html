@@ -18,6 +18,9 @@
 .cm-error-duplicate {
     text-decoration: line-through;
 }
+pre.readonly {
+    background-color:#aaa;
+}
     </style>
   </head>
   <body>
@@ -36,8 +39,9 @@
 </textarea></form>
     <script>
       var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
-          //onKeyEvent: preventEditing,
-          onHighlightComplete: parseJsonErrors
+          onKeyEvent: preventEditing,
+          //onHighlightComplete: parseJsonErrors
+          onHighlightComplete: readonlyCouchbase
       });
     </script>
 

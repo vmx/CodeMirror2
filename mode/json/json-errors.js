@@ -8,7 +8,7 @@ function parseJsonErrors(cm) {
     var errors = [];
     var i = 0;
     CodeMirror.runMode(cm.getValue(), cm.getOption('mode'),
-    function(text, style, pos) {
+    function(text, style, line, ch) {
         // Get all keys
         if (style == 'object') {
             if (text == '{') {
@@ -23,7 +23,7 @@ function parseJsonErrors(cm) {
                 // Set the value to the current position of the token.
                 // If there was a second one, the value will be set to "true"
                 keysList[keysList.length-1][text] = {
-                    line: pos.line, from: pos.ch, to: pos.ch+text.length};
+                    line: line, from: ch, to: ch+text.length};
             }
             // Key with same value already exists
             else {
@@ -33,7 +33,7 @@ function parseJsonErrors(cm) {
                     keysList[keysList.length-1][text] = true;
                 }
                 errors.push({
-                    line: pos.line, from: pos.ch, to: pos.ch+text.length});
+                    line: line, from: ch, to: ch+text.length});
             }
         }
     });

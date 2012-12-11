@@ -89,6 +89,11 @@ CodeMirror.defineMode("css", function(config) {
                 state.stack.push("object");
             }
             else if (type == "}") {
+                // There was a comma at the end of the value,
+                // but the object is closed
+                if (context !== 'value') {
+                    style = 'error';
+                }
                 state.stack.pop();
             }
             else if (type == '[') {

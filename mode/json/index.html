@@ -4,13 +4,18 @@
     <title>CodeMirror 2: JSON mode</title>
     <link rel="stylesheet" href="../../lib/codemirror.css">
     <script src="../../lib/codemirror.js"></script>
+    <script src="../../lib/util/runmode.js"></script>
     <script src="json.js"></script>
+    <script src="json-errors.js"></script>
     <link rel="stylesheet" href="../../theme/default.css">
     <style>.CodeMirror {background: #f8f8f8;}</style>
     <link rel="stylesheet" href="../../css/docs.css">
     <style type="text/css">
 .cm-key {
     font-weight:bold;
+}
+.cm-error-duplicate {
+    text-decoration: line-through;
 }
     </style>
   </head>
@@ -20,6 +25,8 @@
 {
     "some": "json",
     "more": "keys",
+    "_id": "bla",
+    "$expire": 330,
     "even": {
         "nested": 241
     },
@@ -27,7 +34,9 @@
 }
 </textarea></form>
     <script>
-      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {});
+      var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+          onHighlightComplete: parseJsonErrors
+      });
     </script>
 
     <p><strong>MIME types defined:</strong> <code>text/css</code>.</p>
